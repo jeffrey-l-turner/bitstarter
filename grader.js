@@ -72,7 +72,7 @@ var buildFcn = function(jsoncheck) {
                 out[checks[ii]] = present;
             }
 
-            console.error("Calling JSON.Stringify ");
+//            console.error("Calling JSON.Stringify ");
             var outJson = JSON.stringify(out, null, 4);
             console.log(outJson);
         }
