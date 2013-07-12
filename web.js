@@ -1,4 +1,7 @@
+#!/usr/bin/env node
+// Starting edits to read index.html and serve to Heroku
 var express = require('express');
+var fs = require('fs');
 
 var app = express.createServer(express.logger());
 
