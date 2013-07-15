@@ -58,26 +58,46 @@ var assertURLExists = function(url) {
       return url;
 };
 
-
-var buildFcn = function(jsoncheck) {
-    var response2 = function(result) {
-        if (result instanceof Error) {
-            console.error('Error: ' + util.format(result.message));
-        } else  {
-            var checks = loadChecks(jsoncheck).sort();
-            $ = cheerio.load(result);
+var checkANDoutput = function (json, dom) {
+            var checks = loadChecks(json).sort();
+                                                    console.error("result= " + result);                                       // Remove this after debug
+            $ = cheerio.load(dom);
             var out = {};
-            for(var ii in checks) {
+            for (var ii in checks) {
                 var present = $(checks[ii]).length > 0;
+                                                    console.error("present= " + present + " checks[ii]= " + checks[ii]);      // Remove this after debug
                 out[checks[ii]] = present;
             }
-
-//            console.error("Calling JSON.Stringify ");
             var outJson = JSON.stringify(out, null, 4);
             console.log(outJson);
-        }
+};
+
+var buildFcn = function() {
+    return { 
+        "usage": function () { //first method
+            console.error("Usage: buildFcn.afs(file, jsoncheck) is for reading filesystem async; buildFcn.url(jsoncheck) gets url");
+        },
+
+    "afs": function(file, jsoncheck) { var response2fs = function (err, data) { //function takes two paramaters for asynchronous file read -- error and data
+              if (err instanceof Error) {
+                  console.error('Error: ' + util.format(err.message));
+                  process.exit(1); // http://nodejs.org/api/process.html#process_process_exit_code
+              } else
+              checkANDoutput(jasoncheck, data);
+        };
+     return response2fs;
     };
-    return response2;
+
+    "url": function(jsoncheck) {var response2url = function(result) {  // function only takes one parameter for url
+        if (result instanceof Error) {
+            console.error('Error: ' + util.format(result.message));
+            process.exit(1); // http://nodejs.org/api/process.html#process_process_exit_code
+        } else  {
+            checkANDoutput(jasoncheck, result);
+        }};
+    
+    return response2url;
+    }
 };
 
 var loadChecks = function(checksfile) {
@@ -97,13 +117,14 @@ if(require.main == module) {
         .option('-u, --url <url>', 'URL to html file for grading', clone(assertURLExists))
         .parse(process.argv);
     if (program.url) {
-          var httpGetResponse = buildFcn(program.checks);
+          var httpGetResponse = buildFcn.url(program.checks);
 //          console.error("program.checks =" + program.checks + " ; program.url = " + program.url);
           rest.get(program.url).on('complete', httpGetResponse);
           }
     else { 
           console.error("checksfile =" + program.checks + " ; program.file = " + program.file);
-          var fsReadResponse = buildFcn(program.checks);
+          var err;
+          var fsReadResponse = buildFcn.afs(err, program.checks);
           fs.readFile(program.file, fsReadResponse);
          }
 } else {
