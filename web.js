@@ -27,22 +27,27 @@ app.get(/^(.+)$/, function(request, response){
 */
 
 
-/* serve static image png file requests -- this must be placed last on app.get list */
- app.get(/^(.+).png$/, function(req, res){ 
-    var path = __dirname + req.params[0] + '.png';
+/* serve static image png file requests -- placing this near end of app.get list */
+/*  app.get(/^(.+).png$/, function(req, res){ 
+    var path = '';
+    path = __dirname + req.params[0] + '.png';
     console.log('static png file request: ' + path);
     var size = fs.statSync(path).size;
     var buffer = new Buffer(size);
     buffer = fs.readFileSync(path).toString();
     console.log('path: ' + path + ' size = ' + size);
     res.contentType('image/png');
-    res.send(buffer);
+//    res.sendfile('/home/ubuntu/homework/bitstarter/index.html');
+    res.sendfile(path, {root: __dirname});
+//    res.send(buffer);
  });
+*/
 
 // {            'Content-Type': meta.contentType}
 
 var port = process.env.PORT || 8080;
 app.use(express.favicon('./favicon.ico'));
+app.use(express.static(__dirname + '/assets'));
 app.listen(port, function() {
   console.log("Listening on " + port);
 });
