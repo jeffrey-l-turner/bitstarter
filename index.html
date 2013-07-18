@@ -61,12 +61,6 @@
         line-height: 24px;
       }
 
-      /* For small caps on Cambix */
-      sc {
-        font-size: 125%;
-        font-variant: small-caps;
-      }
-
       /* Video pitch and Action */
       .pitch {
         padding: 2.5% 0%;
@@ -141,7 +135,8 @@
       <!-- www.google.com/fonts/specimen/Ubuntu#pairings -->
       <div class="row-fluid heading">
         <div class="span12">
-          <h1><sc>Cambix</sc></h1>
+          <!-- could not format small caps with Google fonts so incr. spacing  -->
+          <h1><font style="letter-spacing: 18pt;" style="text-shadow: 4px 5px 0px #1bb521;" color="#f2a50f" letter-spacing: 0.5em><sc>Cambix</sc></font></h1>   
         </div>
       </div> 
       <div class="row-fluid subheading">
@@ -153,7 +148,7 @@
       </div>
       <div class="row-fluid pitch">
         <div class="span5 offset1 video">
-          <img class="img-polaroid" src="/img/CMBX_image.png">
+          <img class="img-polaroid" src="/img/CMBX_vid_placeholder.png">
         </div>
 
         <!-- We define a new 'actions' div to contain statistics, order, and share buttons.-->
@@ -191,7 +186,7 @@
           <div class="span6 offset3 order">
             <!-- Standard Bootstrap button. -->
             <!-- http://twitter.github.io/bootstrap/base-css.html#buttons -->
-            <button class="btn btn-success btn-large">Sponsor Features</button>
+            <button class="btn btn_rounded btn-success btn-large">Sponsor<br><font size=-1>(Features or Project)</font></button>
           </div>
           <div class="span8 offset2 social">
             <!-- Social buttons are not included in default Bootstrap. -->
@@ -213,15 +208,15 @@
         </div>
         <div class="span5 copy">
           <p>
-            Bitcoin is at a crossroads. Major currency exchanges or <sc>
+            Bitcoin is at a crossroads. Just a few major currency exchanges or <sc>
             "cambios" </sc> serve the majority of the Bitcoin economy.
             With a significant majority of Bitcoin transactions operating
             through just a few currency exchanges, the entire Bitcoin
-            economy is at risk from over-regulation or just a few points of
-            failure. <br>We propose to develop a peer-to-peer value exchange
+            economy is at risk from over-regulation or a few failure points.
+            <br>We propose to develop a peer-to-peer value exchange
             platform. This platform will scale the Bitcoin economy. By allowing
             parties to directly transact with one another in a private and secure
-            fashion, the reliance on a select few <sc> "cambios" </sc>
+            fashion, the reliance on a select few cambios
             can be eliminated. Thus, a much more robust Bitcoin economy
             can develop and flourish.
           </p>
