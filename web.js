@@ -9,8 +9,6 @@ app.get('/', function(request, response) {
     response.send(indexbuffer.toString("ascii", 0, indexsize-1));
 });
 
-
-
 /* serve static image png file requests -- placing this near end of app.get list */
 /*  app.get(/^(.+).png$/, function(req, res){ 
     var path = '';
@@ -28,10 +26,8 @@ app.get('/', function(request, response) {
 <-- May add this back in later to serve specific static files based on type; used app.use(express.static(...)) to serve files out of static assets directory; see below
 */
 
-// {            'Content-Type': meta.contentType}
-
 var port = process.env.PORT || 8080;
-app.use(express.favicon(__dirname + '/assets/favicon.ico'));
+app.use(express.favicon(__dirname + '/assets/favicon.ico', {maxAge: 86400000}));
 app.use(express.static(__dirname + '/assets'));
 // Speedup by serving index file out of buffer by setting some global variables for app.get to use
 var indexsize = fs.statSync("index.html").size;
