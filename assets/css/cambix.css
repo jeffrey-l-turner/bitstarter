@@ -19,11 +19,11 @@ width:940px;
 sc {
     font-size: 125%;
     font-variant: small-caps;
-    text-shadow: 1px 1px 0px #1d8a0b;
+    text-shadow: 1px 2px 0px #1d8a0b;
 }
 
 /* For Google font problems with spacing and setting shadow */
-.c1 {color: #F2A50F; letter-spacing: 18pt; text-shadow: 4px 5px 0px #1bb521}
+.c1 {color: #F2A50F; letter-spacing: 18pt; text-shadow: 2px 3px 0px #1bb521; text-shadow: 4px 5px 0px #0b2f8a;}
 
 /* For customizing button used for Sponsorship (want more rounded look)  */
 .btn_rounded {
@@ -68,12 +68,23 @@ sc {
   margin: 0px;
 }
 
+/* customized navbar top with green/gold and blue gradient overlay */
 .navbar-inner{
 /* border-radius:10px; */
-background: #1d8a0b !important; 
+/* background: #1d8a0b !important; */
 background-image: none;
 background-repeat: no-repeat;
-filter: none !important;
+
+/* filter: none !important; */
+background: -moz-linear-gradient(top,  rgba(19,99,37,0.9) 0%, rgba(43,51,183,0.9) 92%, rgba(45,47,196,1) 100%) !important; /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(19,99,37,0.9)), color-stop(92%,rgba(43,51,183,0.9)), color-stop(100%,rgba(45,47,196,1))) !important; /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(19,99,37,0.9) 0%,rgba(43,51,183,0.9) 92%,rgba(45,47,196,1) 100%) !important; /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(19,99,37,0.9) 0%,rgba(43,51,183,0.9) 92%,rgba(45,47,196,1) 100%) !important; /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(19,99,37,0.9) 0%,rgba(43,51,183,0.9) 92%,rgba(45,47,196,1) 100%) !important; /* IE10+ */
+background: linear-gradient(to bottom,  rgba(19,99,37,0.9) 0%,rgba(43,51,183,0.9) 92%,rgba(45,47,196,1) 100%) !important; /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e6136325', endColorstr='#2d2fc4',GradientType=0 ) !important; /* IE6-9 */
+/* end overlay */
+
 border-top:0px solid #cc412a !important;
 border-bottom:23px solid #f2a50f !important;
 border-left:0px !important;
