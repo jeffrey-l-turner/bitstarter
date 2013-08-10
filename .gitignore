@@ -1,1 +1,18 @@
+# Heroku environmental variables, including API keys.
+# https://devcenter.heroku.com/articles/config-vars
+.env
+.env.dummy
+
+# npm packages
 node_modules
+.nodeproto
+
+# Mac
+.DS_Store
+
+# Emacs
+*~
+
+#some tmp files from homework vestiges
+testfunc.js
+output
