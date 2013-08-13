@@ -1,7 +1,19 @@
 {
   "name": "cambix-org-bitstarter-final-project",
   "version": "0.0.1",
+  "author": "info <at>  cambix.org <info@cambix.org>",
   "description": "Stanford-Coursera Startup Engineering final project",
+  "contributors": [ 
+    {
+      "name": "Jeff Turner",
+      "email": "jlt@ncambix.org"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jeffrey-l-turner/bitstarter"
+  },
+  "license": "Creative Commons",
   "main": "web.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,6 +25,10 @@
     "express": "~3.3.4",
     "async": "~0.2.9"
   },
+  "keywords": [
+    "node",
+    "heroku"
+  ],
   "engines": {
     "node": "0.10.12",
     "npm": "1.2.30"
