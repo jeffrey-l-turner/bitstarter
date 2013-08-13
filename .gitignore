@@ -3,9 +3,10 @@
 .env
 .env.dummy
 
-# npm packages
+# npm packages and logs
 node_modules
 .nodeproto
+npm-debug.log
 
 # Mac
 .DS_Store
