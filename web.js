@@ -8,6 +8,9 @@ var async   = require('async')
   , https   = require('https')
   , db      = require('./models');
 
+// Setup file locations
+var ASSET_DIR = '/assets';
+
 // Cache index.html to speed up re-processing ("single page" app)
 var indexsize = fs.statSync("index.html").size;
 var indexbuffer = new Buffer(indexsize).toString();
@@ -24,8 +27,8 @@ app.get('/', function(request, response) {
 });
 
 // Return favicon and static elements -- gifs, etc.
-app.use(express.favicon(__dirname + '/assets/favicon.ico', {maxAge: 86400000}));
-app.use(express.static(__dirname + '/assets'));
+app.use(express.favicon(__dirname + ASSET_DIR + '/favicon.ico', {maxAge: 86400000}));
+app.use(express.static(__dirname + ASSET_DIR));
 
 // Render example.com/orders
 app.get('/orders', function(request, response) {
