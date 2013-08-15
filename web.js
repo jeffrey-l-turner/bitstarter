@@ -11,24 +11,40 @@ var async   = require('async')
 // Setup file locations
 var ASSET_DIR = '/assets';
 
-// Cache index.html to speed up re-processing ("single page" app)
-var indexsize = fs.statSync("index.html").size;
-var indexbuffer = new Buffer(indexsize).toString();
-indexbuffer = fs.readFileSync("index.html");
-
 var app = express();
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
+
+// Return favicon and static elements -- gifs, etc.
+app.use(express.favicon(__dirname + ASSET_DIR + '/favicon.ico', {maxAge: 86400000}));
+app.use(express.static(__dirname + ASSET_DIR));
+
+// Middleware to re-write URLs & remove trailing '/'
+app.use(function(req, res, next) {
+  if (req.url.slice(-1) === '/') {
+    req.url = req.url.slice(0, -1);
+  }
+  next();
+});
+
+// Cache index.html to speed up re-processing (of "single page") app
+var indexsize = fs.statSync("index.html").size;
+var indexbuffer = new Buffer(indexsize).toString();
+indexbuffer = fs.readFileSync("index.html");
 app.set('port', process.env.PORT || 8080);
 
 // Render homepage (note trailing slash): example.com/
 app.get('/', function(request, response) {
   response.send(indexbuffer.toString("ascii", 0, indexsize-1));
 });
-
-// Return favicon and static elements -- gifs, etc.
-app.use(express.favicon(__dirname + ASSET_DIR + '/favicon.ico', {maxAge: 86400000}));
-app.use(express.static(__dirname + ASSET_DIR));
+app.get('/index.html', function(request, response) {
+  response.send(indexbuffer.toString("ascii", 0, indexsize-1));
+  console.log('Request.url = ' + request.url);
+});
+app.get('#', function(request, response) {
+  response.send(indexbuffer.toString("ascii", 0, indexsize-1));
+  console.log('Request.url = ' + request.url);
+});
 
 // Render example.com/orders
 app.get('/orders', function(request, response) {
@@ -44,6 +60,30 @@ app.get('/orders', function(request, response) {
     response.send("error retrieving orders");
   });
 });
+
+// Architectecture
+app.get('/architecture', function(request, response) {
+    console.log("Architecture link clicked");
+    response.send(indexbuffer.toString("ascii", 0, indexsize-1));
+    });
+
+// Contact
+app.get('/contact', function(request, response) {
+    console.log("Contact link clicked");
+    response.send(indexbuffer.toString("ascii", 0, indexsize-1));
+    });
+
+// Design
+app.get('/design', function(request, response) {
+    console.log("Design link clicked");
+    response.send(indexbuffer.toString("ascii", 0, indexsize-1));
+    });
+
+// About
+app.get('/about', function(request, response) {
+    response.send(indexbuffer.toString("ascii", 0, indexsize-1));
+    console.log("About link clicked");
+    });
 
 // Hit this URL while on example.com/orders to refresh
 app.get('/refresh_orders', function(request, response) {
@@ -75,10 +115,9 @@ app.get('/refresh_orders', function(request, response) {
 
     res.on('error', function(e) {
       console.log(e);
-      response.send("error syncing orders");
+      response.send("error syncing orders within /refresh_orders");
     });
   });
-
 });
 
 // sync the database and start the server
