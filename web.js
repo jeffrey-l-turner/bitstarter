@@ -6,6 +6,7 @@ var async   = require('async')
   , fs      = require('fs')
   , http    = require('http')
   , https   = require('https')
+  , querystring = require('querystring')
   , db      = require('./models');
 
 // Setup file locations
@@ -26,8 +27,13 @@ app.use(function(req, res, next) {
   }
   next();
 });
+// simple logger
+app.use(function(req, res, next){
+  console.log('req.method: %s; req.url: %s; req.query: %s', req.method, req.url, querystring.stringify(req.query, ';', ' ' ));
+  next();
+});
 
-// Cache index.html to speed up re-processing (of "single page") app
+// Cache index.html to speed up re-processing of ("single page") app
 var indexsize = fs.statSync("index.html").size;
 var indexbuffer = new Buffer(indexsize).toString();
 indexbuffer = fs.readFileSync("index.html");
@@ -39,11 +45,10 @@ app.get('/', function(request, response) {
 });
 app.get('/index.html', function(request, response) {
   response.send(indexbuffer.toString("ascii", 0, indexsize-1));
-  console.log('Request.url = ' + request.url);
 });
 app.get('#', function(request, response) {
+  response.redirect('/');
   response.send(indexbuffer.toString("ascii", 0, indexsize-1));
-  console.log('Request.url = ' + request.url);
 });
 
 // Render example.com/orders
@@ -159,4 +164,10 @@ var addOrder = function(order_obj, callback) {
       }
     });
   }
+};
+
+app.use(redirectUnmatched);                    // redirect if nothing else sent a response
+
+function redirectUnmatched(req, res) {
+  res.redirect("/");
 };
