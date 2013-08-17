@@ -76,8 +76,8 @@ app.get('about', function(request, response) {
     console.log("About link clicked");
     });
 
-// Render example.com/orders
-app.get('/orders', function(request, response) {
+// Render example.com/donations
+app.get('/donations', function(request, response) {
   global.db.Order.findAll().success(function(orders) {
     var orders_json = [];
     orders.forEach(function(order) {
@@ -110,7 +110,7 @@ app.get('/refresh_orders', function(request, response) {
             response.send("error adding orders");
           } else {
             // orders added successfully
-            response.redirect("/orders");
+            response.redirect("/donations");
           }
         });
       } catch (error) {
