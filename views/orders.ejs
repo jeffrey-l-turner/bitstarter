@@ -176,6 +176,7 @@
     <!-- Original orders.ejs follows. -->
     <div class="container">
       <h2>Donations</h2>
+
       <table class="table table-striped">
         <thead>
           <th>Coinbase ID</th>
@@ -191,7 +192,11 @@
              </tr>
              <% } %>
       </table>
-      <a class="btn btn-info btn-large" href="/refresh_orders"><i class="icon-refresh icon-white"></i> Refresh Donation Transaction Log <i class="icon-refresh icon-white"></i></a>
+
+      <div class="span6 padding:15%;">
+         <a class="row-fluid btn btn_rounded btn-success btn-medium" href="/refresh_donations"><i class="icon-refresh icon-white text-align: left;"></i> Refresh Donation Transaction Log <i class="icon-refresh icon-white text-align: right;"></i></a>
+      </div>
+
     </div>
 
     <!-- Google Analytics code snippets -->
