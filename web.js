@@ -6,7 +6,6 @@ var async   = require('async')
   , fs      = require('fs')
   , http    = require('http')
   , https   = require('https')
-  , querystring = require('querystring')
   , db      = require('./models');
 
 // Setup file locations
@@ -15,6 +14,7 @@ var ASSET_DIR = '/assets';
 var app = express();
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
+app.set('title', 'Cambix.org Scaling the Bitcoin Economy');
 
 // Return favicon and static elements -- gifs, etc.
 app.use(express.favicon(__dirname + ASSET_DIR + '/favicon.ico', {maxAge: 86400000}));
@@ -27,9 +27,17 @@ app.use(function(req, res, next) {
   }
   next();
 });
+
+// Remove trailing # to end of URL
+app.use(function(req, res, next) {
+  console.log("Stripping url: " + req.url);
+  req.url = req.url.replace(/#+$/, ""); 
+  next();
+});
+
 // simple logger
 app.use(function(req, res, next){
-  console.log('req.method: %s; req.url: %s; req.query: %s', req.method, req.url, querystring.stringify(req.query, ';', ' ' ));
+  console.log('req.method: %s; req.url: %s', req.method, req.url);
   next();
 });
 
@@ -43,13 +51,30 @@ app.set('port', process.env.PORT || 8080);
 app.get('/', function(request, response) {
   response.send(indexbuffer.toString("ascii", 0, indexsize-1));
 });
-app.get('/index.html', function(request, response) {
-  response.send(indexbuffer.toString("ascii", 0, indexsize-1));
-});
-app.get('#', function(request, response) {
-  response.redirect('/');
-  response.send(indexbuffer.toString("ascii", 0, indexsize-1));
-});
+
+// Features
+app.get('/features', function(request, response) {
+    console.log("Features link clicked; request.url: " + request.url);
+    response.send(fs.readFileSync('features.html').toString());
+    });
+
+// Contact
+app.get('#contact', function(request, response) {
+    console.log("Contact link clicked");
+    response.send(fs.readFileSync('index.html').toString());
+    });
+
+// Design
+app.get('design', function(request, response) {
+    console.log("Design link clicked");
+    response.send(indexbuffer.toString("ascii", 0, indexsize-1));
+    });
+
+// About
+app.get('about', function(request, response) {
+    response.send(indexbuffer.toString("ascii", 0, indexsize-1));
+    console.log("About link clicked");
+    });
 
 // Render example.com/orders
 app.get('/orders', function(request, response) {
@@ -65,30 +90,6 @@ app.get('/orders', function(request, response) {
     response.send("error retrieving orders");
   });
 });
-
-// Architectecture
-app.get('/architecture', function(request, response) {
-    console.log("Architecture link clicked");
-    response.send(indexbuffer.toString("ascii", 0, indexsize-1));
-    });
-
-// Contact
-app.get('/contact', function(request, response) {
-    console.log("Contact link clicked");
-    response.send(indexbuffer.toString("ascii", 0, indexsize-1));
-    });
-
-// Design
-app.get('/design', function(request, response) {
-    console.log("Design link clicked");
-    response.send(indexbuffer.toString("ascii", 0, indexsize-1));
-    });
-
-// About
-app.get('/about', function(request, response) {
-    response.send(indexbuffer.toString("ascii", 0, indexsize-1));
-    console.log("About link clicked");
-    });
 
 // Hit this URL while on example.com/orders to refresh
 app.get('/refresh_orders', function(request, response) {
