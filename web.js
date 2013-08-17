@@ -60,15 +60,15 @@ app.get('/features', function(request, response) {
     });
 
 // Contact
-app.get('#contact', function(request, response) {
+app.get('contact', function(request, response) {
     console.log("Contact link clicked");
     response.send(fs.readFileSync('index.html').toString());
     });
 
 // Design
-app.get('design', function(request, response) {
+app.get('/design', function(request, response) {
     console.log("Design link clicked");
-    response.send(indexbuffer.toString("ascii", 0, indexsize-1));
+    response.send(fs.readFileSync('design.html').toString());
     });
 
 // About
