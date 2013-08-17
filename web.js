@@ -6,6 +6,7 @@ var async   = require('async')
   , fs      = require('fs')
   , http    = require('http')
   , https   = require('https')
+  , branch = process.env.BRANCH != 'dev'
   , db      = require('./models');
 
 // Setup file locations
