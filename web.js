@@ -6,19 +6,46 @@ var async   = require('async')
   , fs      = require('fs')
   , http    = require('http')
   , https   = require('https')
+  , branch = process.env.BRANCH != 'dev'
   , db      = require('./models');
 
 // Setup file locations
 var ASSET_DIR = '/assets';
 
-// Cache index.html to speed up re-processing ("single page" app)
-var indexsize = fs.statSync("index.html").size;
-var indexbuffer = new Buffer(indexsize).toString();
-indexbuffer = fs.readFileSync("index.html");
-
 var app = express();
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
+app.set('title', 'Cambix.org Scaling the Bitcoin Economy');
+
+// Return favicon and static elements -- gifs, etc.
+app.use(express.favicon(__dirname + ASSET_DIR + '/favicon.ico', {maxAge: 86400000}));
+app.use(express.static(__dirname + ASSET_DIR));
+
+// Middleware to re-write URLs & remove trailing '/'
+app.use(function(req, res, next) {
+  if (req.url.slice(-1) === '/') {
+    req.url = req.url.slice(0, -1);
+  }
+  next();
+});
+
+// Remove trailing # to end of URL
+app.use(function(req, res, next) {
+  console.log("Stripping url: " + req.url);
+  req.url = req.url.replace(/#+$/, ""); 
+  next();
+});
+
+// simple logger
+app.use(function(req, res, next){
+  console.log('req.method: %s; req.url: %s', req.method, req.url);
+  next();
+});
+
+// Cache index.html to speed up re-processing of ("single page") app
+var indexsize = fs.statSync("index.html").size;
+var indexbuffer = new Buffer(indexsize).toString();
+indexbuffer = fs.readFileSync("index.html");
 app.set('port', process.env.PORT || 8080);
 
 // Render homepage (note trailing slash): example.com/
@@ -26,12 +53,32 @@ app.get('/', function(request, response) {
   response.send(indexbuffer.toString("ascii", 0, indexsize-1));
 });
 
-// Return favicon and static elements -- gifs, etc.
-app.use(express.favicon(__dirname + ASSET_DIR + '/favicon.ico', {maxAge: 86400000}));
-app.use(express.static(__dirname + ASSET_DIR));
+// Features
+app.get('/features', function(request, response) {
+    console.log("Features link clicked; request.url: " + request.url);
+    response.send(fs.readFileSync('features.html').toString());
+    });
 
-// Render example.com/orders
-app.get('/orders', function(request, response) {
+// Contact
+app.get('#contact', function(request, response) {
+    console.log("Contact link clicked");
+    response.send(fs.readFileSync('index.html').toString());
+    });
+
+// Design
+app.get('design', function(request, response) {
+    console.log("Design link clicked");
+    response.send(indexbuffer.toString("ascii", 0, indexsize-1));
+    });
+
+// About
+app.get('about', function(request, response) {
+    response.send(indexbuffer.toString("ascii", 0, indexsize-1));
+    console.log("About link clicked");
+    });
+
+// Render example.com/donations
+app.get('/donations', function(request, response) {
   global.db.Order.findAll().success(function(orders) {
     var orders_json = [];
     orders.forEach(function(order) {
@@ -64,7 +111,7 @@ app.get('/refresh_orders', function(request, response) {
             response.send("error adding orders");
           } else {
             // orders added successfully
-            response.redirect("/orders");
+            response.redirect("/donations");
           }
         });
       } catch (error) {
@@ -75,10 +122,9 @@ app.get('/refresh_orders', function(request, response) {
 
     res.on('error', function(e) {
       console.log(e);
-      response.send("error syncing orders");
+      response.send("error syncing orders within /refresh_orders");
     });
   });
-
 });
 
 // sync the database and start the server
@@ -120,4 +166,10 @@ var addOrder = function(order_obj, callback) {
       }
     });
   }
+};
+
+app.use(redirectUnmatched);                    // redirect if nothing else sent a response
+
+function redirectUnmatched(req, res) {
+  res.redirect("/");
 };
