@@ -68,6 +68,10 @@ sc {
   margin: 0px;
 }
 
+/* For carousel opacity effects*/
+/* .carousel .item {-webkit-transition: opacity 3s; -moz-transition: opacity 3s; -ms-transition: opacity 3s; -o-transition: opacity 3s; transition: opacity 3s;}
+.carousel .active.left {left:0;opacity:0;z-index:2;}
+.carousel .next {left:0;opacity:1;z-index:1;} */
 
 
 /* customized navbar top with green/gold and blue gradient overlay */

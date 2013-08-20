@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 // Updated Bitstarter Final Project
 
-var async   = require('async')
-  , express = require('express')
-  , fs      = require('fs')
-  , http    = require('http')
-  , https   = require('https')
-  , branch = process.env.BRANCH != 'dev'
-  , db      = require('./models');
+var async   = require('async'),
+    express = require('express'),
+    fs      = require('fs'),
+    http    = require('http'),
+    https   = require('https'), 
+    branch = process.env.BRANCH !== 'dev',
+    db      = require('./models');
 
 // Setup file locations
 var ASSET_DIR = '/assets';
@@ -16,10 +16,6 @@ var app = express();
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.set('title', 'Cambix.org Scaling the Bitcoin Economy');
-
-// Return favicon and static elements -- gifs, etc.
-app.use(express.favicon(__dirname + ASSET_DIR + '/favicon.ico', {maxAge: 86400000}));
-app.use(express.static(__dirname + ASSET_DIR));
 
 // Middleware to re-write URLs & remove trailing '/'
 app.use(function(req, res, next) {
@@ -41,6 +37,10 @@ app.use(function(req, res, next){
   console.log('req.method: %s; req.url: %s', req.method, req.url);
   next();
 });
+
+// Return favicon and static elements -- gifs, etc.
+app.use(express.favicon(__dirname + ASSET_DIR + '/favicon.ico', {maxAge: 86400000}));
+app.use(express.static(__dirname + ASSET_DIR));
 
 // Cache index.html to speed up re-processing of ("single page") app
 var indexsize = fs.statSync("index.html").size;
@@ -141,7 +141,7 @@ db.sequelize.sync().complete(function(err) {
 // add order to the database if it doesn't already exist
 var addOrder = function(order_obj, callback) {
   var order = order_obj.order; // order json from coinbase
-  if (order.status != "completed") {
+  if (order.status !== "completed") {
     // only add completed orders
     callback();
   } else {
