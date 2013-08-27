@@ -17,3 +17,5 @@ npm-debug.log
 #some tmp files from homework vestiges
 testfunc.js
 output
+#js compiled files
+assets/js
