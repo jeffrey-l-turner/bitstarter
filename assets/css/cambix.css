@@ -74,14 +74,14 @@ sc {
 .carousel .next {left:0;opacity:1;z-index:1;} */
 
 
-/* Ribbon to be placed on page for "Stanford Coursera" class */
-/* Left will inherit from right (so we don't need to duplicate code */
-.fork-ribbon {
-  /* The right and left lasses determine the side we attach our banner to */
-  position: absolute;
+/* Text block to be placed on page for "Stanford Coursera" class */
+.course-block {
+  /* position: absolute; */
 
-  /* Add a bit of padding to give some substance outside the "stitching" */
-  padding: 2px 0;
+  font-size: 8px;
+  font-weight: 700;
+  text-align: center;
+  color: white;
 
   /* Set the base colour */
   background-color: #a00;
@@ -102,25 +102,25 @@ sc {
   z-index: 9999;
 }
 
-.fork-ribbon a,
-.fork-ribbon a:hover {
+.fork-block a,
+.fork-block a:hover {
   /* Set the font */
-  font-size: 13px;
+  font-size: 10px;
   font-weight: 700;
   color: white;
 
   /* Set the text properties */
   text-decoration: none;
   text-shadow: 0 -1px rgba(0,0,0,0.5);
-  text-align: left;
+  text-align: center;
 
   /* Set the geometry. If you fiddle with these you'll also need to tweak the top and right values in #fork-ribbon. */
-  width: 300px;
-  line-height: 20px;
+  width: 100px;
+/*  line-height: 17px; */
 
   /* Set the layout properties */
   display: inline-block;
-  padding: 2px 0px 0px 5px; 
+  padding: 0px 5px 5px 0px; 
 
   /* Add "stitching" effect */
   border-width: 1px 0;
@@ -129,12 +129,12 @@ sc {
 }
 
 .fork-ribbon a .smalltext {
-  font-size: 10px;
+  font-size: 9px;
 }
 
 .fork-ribbon-wrapper {
-  width: 200px;
-  height: 200px;
+  width: 95px;
+  height: 90px;
   position: absolute;
   overflow: hidden;
   top: 0;
@@ -173,12 +173,11 @@ sc {
   right: 69px;
   left: 4px;
 
-  /* Rotate the banner 45 degrees */
- /*  -webkit-transform: rotate(-45deg);
-  -moz-transform: rotate(-45deg);
-  -o-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-*/
+  /* Rotate the banner by +/- degrees */
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
 }
 
 /* customized navbar top with green/gold and blue gradient overlay */
