@@ -212,13 +212,14 @@
                      <% backers = backers + 1 %>
                      <% bc_sum = bc_sum + orders[i].amount %>
                    <% } %>
+                   <% sum = parseFloat(Math.round(bc_sum * 100) / 100).toFixed(2); %> <!-- Round up to two decimal places -->
                 <h3><%= backers %></h3> <p>backers</p>
                 </div>
               </div> <!-- end span4 -->
 
               <div class="span4">
                 <div class="linediv-c">
-                  <h3><i class="icon-btc"><%= bc_sum %></i></h3><p>of <i class="icon-btc"></i>1000 </p>
+                  <h3><i class="icon-btc"><%= sum %></i></h3><p>of <i class="icon-btc"></i>1000 </p>
                 </div>
               </div>
 
