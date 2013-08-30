@@ -178,6 +178,7 @@
           <p class="lead">An Open and Scalable Virtual Exchange Platform for Bitcoin.</p>
         </div>
       </div>
+
       <div class="row-fluid pitch">
         <div class="span5 offset1 video">
           <img class="img-polaroid" alt="Placeholder" src="/img/CMBX_vid_placeholder.png">
@@ -187,8 +188,19 @@
         <div class="span5 actions">
          <div class="row-fluid">
           <div class="span8 offset2">
+
+          <div class="row-fluid">
+           <div class="span6 offset2 order">
+            <!-- Using Coingbase button for Bitcoin payments -->
+             <a class="coinbase-button" data-code="a0c2c2a8b8d7fc798f611909dccb68d9" data-button-style="donation_small" 
+             href="https://coinbase.com/checkouts/a0c2c2a8b8d7fc798f611909dccb68d9">Donate</a><script src="https://coinbase.com/assets/button.js" type="text/javascript"></script>
+           </div>
+          </div> <!-- end row-fluid on "actions"-->
+
            <div class="row-fluid statistics">
+
             <div class="statistics">
+
               <div class="span4">
                 <!-- linediv-l and linediv-r give dividing lines that look
                 different in horizontal and vertical layouts, illustrating
@@ -202,19 +214,23 @@
                    <% } %>
                 <h3><%= backers %></h3> <p>backers</p>
                 </div>
-              </div>
+              </div> <!-- end span4 -->
+
               <div class="span4">
                 <div class="linediv-c">
                   <h3><i class="icon-btc"><%= bc_sum %></i></h3><p>of <i class="icon-btc"></i>1000 </p>
                 </div>
               </div>
+
               <div class="span4">
                 <div class="linediv-r">
                 <h3 id="countdown"></h3> <p>days left</p>
                 </div>
               </div>
-            </div>
-          </div>
+
+            </div> <!-- end statistics -->
+          </div> <!-- end row-fluid statistics -->
+
           <div class="row-fluid">
            <div class="span12 offset1">
             <!-- Bootstrap progress bar -->
@@ -225,41 +241,38 @@
             </div>
            </div>
           </div>
+
           <div class="row-fluid">
-           <div class="span6 offset2 order">
-            <!-- Using Coingbase button for Bitcoin payments -->
-             <a class="coinbase-button" data-code="a0c2c2a8b8d7fc798f611909dccb68d9" data-button-style="custom_small" 
-             href="https://coinbase.com/checkouts/a0c2c2a8b8d7fc798f611909dccb68d9">Donate Bitcoins</a><script src="https://coinbase.com/assets/button.js" type="text/javascript"></script>
-             <!-- Placing GitHub button next to donations for formatting purposes (margin & padding) -->
-             <a href="https://github.com/cambix/cambix/" target="_blank" <button class="btn btn-github btn-medium"><i class="icon-github"></i> GitHub Code</button> </a>
-           </div>
-          </div>
-          <div class="row-fluid">
-           <div class="span5 offset2 social">
+           <div class="span6 offset1 social">
              <!-- AddThis Button BEGIN -->
              <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
-             <a class="addthis_button_twitter"></a>
-             <a class="addthis_button_facebook"></a>
-             <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
+              <a class="addthis_button_twitter"></a>
+              <!-- Placing GitHub button here for formatting purposes (margin & padding) -->
+              <a href="https://github.com/cambix/cambix/" target="_blank" <button class="btn btn-github btn-small"><i class="icon-github"></i> GitHub Src</button> </a> 
+              <a class="addthis_button_facebook"></a>
+              <!-- <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>  -->
              </div>
              <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
              <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51fb54054a1fd844"></script>
              <!-- AddThis Button END -->
            </div>
           </div>
+
+          </div>
          </div>
         </div>
-      </div>
+       </div>
+      </div>  <!-- end row-fluid pitch -->
 
       <!-- Beyond this part the marketing copy begins. -->
       <!-- https://developer.mozilla.org/en-US/docs/Web/CSS/text-align -->
       <!-- http://twitter.github.io/bootstrap/base-css.html#images -->
       <!-- http://placehold.it -->
       <div class="row-fluid section1">
-        <div class="span8 offset2 pull-left asset">
-          <img class="img-polaroid" alt="Placeholder" style="width: 400px; height: 300px; overflow: inherit" src="/img/CMBX_prop_arch.png">
+        <div class="span4 offset3 asset">
+          <img class="img-polaroid" alt="Placeholder" style="width: 440px; height: 300px; overflow: inherit" src="/img/CMBX_prop_arch.png">
         </div>
-        <div class="span5 offset1 copy">
+        <div class="span3 copy">
           <p>
             Bitcoin is at a crossroads. Just a few major currency exchanges or <sc>
             <a href="http://en.wikipedia.org/wiki/Cambio" target="_blank">
@@ -279,10 +292,10 @@
             can develop and flourish.
           </p>
         </div>
-      </div>
+      </div> <!-- end row-fluid section1 -->
 
       <div class="row-fluid section2">
-        <div class="span5 offset1 copy copy-right">
+        <div class="span3 offset3 copy copy-right">
           <p>
             <h3> <em>Features:</em>
             <blockquote>Open Source <br>
@@ -294,7 +307,7 @@
             </blockquote>
           </p>
         </div>
-        <div class="span5 asset">
+        <div class="span4 offset1 design">
           <img class="img-polaroid" alt="Placeholder" style="width: 400px; height: 300px; overflow: hidden" src="/img/CMBX_design.png">
         </div>
       </div>
