@@ -194,17 +194,23 @@
                 different in horizontal and vertical layouts, illustrating
                 media queries. -->
                 <div class="linediv-l">
-                <h3>11</h3> <p>backers</p>
+                   <!-- EJS calculations for backers total amount of donations-->
+                   <% var backers = 0; var bc_sum = 0; %>
+                   <% for(var i=0; i<orders.length; i++) {%>
+                     <% backers = backers + 1 %>
+                     <% bc_sum = bc_sum + orders[i].amount %>
+                   <% } %>
+                <h3><%= backers %></h3> <p>backers</p>
                 </div>
               </div>
               <div class="span4">
                 <div class="linediv-c">
-                  <h3><i class="icon-btc"> 0.17</i></h3><p>of <i class="icon-btc"></i>1000 </p>
+                  <h3><i class="icon-btc"><%= bc_sum %></i></h3><p>of <i class="icon-btc"></i>1000 </p>
                 </div>
               </div>
               <div class="span4">
                 <div class="linediv-r">
-                <h3>101</h3> <p>days left</p>
+                <h3 id="countdown"></h3> <p>days left</p>
                 </div>
               </div>
             </div>
@@ -214,8 +220,8 @@
             <!-- Bootstrap progress bar -->
             <!-- http://twitter.github.io/bootstrap/components.html#progress -->
             <div class="thermometer progress active">
-              <div class="bar bar-success" style="width: .7%;"></div>
-              <div class="bar bar-warning" style="width: 99.3%;"></div>
+              <div class="bar bar-success" style="width: <%= (bc_sum / 1000) * 100 %>%;"></div>
+              <div class="bar bar-warning" style="width: <%= 100 - (bc_sum / 1000) * 100 %>%;"></div>
             </div>
            </div>
           </div>
@@ -661,6 +667,20 @@ gla2rtFdQbqSmcWJsOWHalGNrynoY40d31CXAxjd8N8FSiNiO2aViuw=<br>
        ga('send', 'pageview');
      
      </script>
+
+    <!-- Countdown Script for thermometer -->
+     
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            today = new Date();
+            BigDay = new Date("Decmber 31, 2013");
+            msPerDay = 24 * 60 * 60 * 1000 ;
+            timeLeft = (BigDay.getTime() - today.getTime());
+            e_daysLeft = timeLeft / msPerDay;
+            daysLeft = Math.floor(e_daysLeft);
+            $("#countdown").text(daysLeft);
+        });
+    </script>
 
   </body>
 </html>

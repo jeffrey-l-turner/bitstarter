@@ -43,14 +43,21 @@ app.use(express.favicon(__dirname + ASSET_DIR + '/favicon.ico', {maxAge: 8640000
 app.use(express.static(__dirname + ASSET_DIR));
 
 // Cache index.html to speed up re-processing of ("single page") app
-var indexsize = fs.statSync("index.html").size;
-var indexbuffer = new Buffer(indexsize).toString();
-indexbuffer = fs.readFileSync("index.html");
 app.set('port', process.env.PORT || 8080);
 
 // Render homepage (note trailing slash): example.com/
 app.get('/', function(request, response) {
-  response.send(indexbuffer.toString("ascii", 0, indexsize-1));
+   global.db.Order.findAll().success(function(orders) {
+    var orders_json = [];
+    orders.forEach(function(order) {
+      orders_json.push({id: order.coinbase_id, amount: order.amount, time: order.time});
+    });
+    // Uses views/orders.ejs
+    response.render("index", {orders: orders_json});
+  }).error(function(err) {
+    console.log(err);
+    response.send("error retrieving orders");
+  });
 });
 
 // Features
@@ -79,13 +86,13 @@ app.get('about', function(request, response) {
 
 // Render example.com/donations
 app.get('/donations', function(request, response) {
-  global.db.Order.findAll().success(function(orders) {
-    var orders_json = [];
-    orders.forEach(function(order) {
-      orders_json.push({id: order.coinbase_id, amount: order.amount, time: order.time});
-    });
-    // Uses views/orders.ejs
-    response.render("orders", {orders: orders_json});
+    global.db.Order.findAll().success(function(orders) {
+        var orders_json = [];
+        orders.forEach(function(order) {
+            orders_json.push({id: order.coinbase_id, amount: order.amount, time: order.time});
+        });
+        // Uses views/index.ejs
+        response.render("orders", {orders: orders_json});
   }).error(function(err) {
     console.log(err);
     response.send("error retrieving orders");
