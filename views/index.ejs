@@ -151,7 +151,7 @@
               <li><a href="design">Design</a></li>
               <li><a href="/donations">Donations</a></li>
               <li><a href="about">About</a></li>
-              <li><a href="contact">Contact</a></li>
+              <li><a class="contact" href="#contact">Contact</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -496,6 +496,8 @@
                 </div>
               </div>
 
+              <a name="contact"></a>    <!-- anchor for contact menu placing here since the menu scrolls below nav 5 lines lower --> 
+
               <div class="accordion-group">
                 <div class="accordion-heading">
                   <a class="accordion-toggle" data-toggle="collapse"
@@ -537,16 +539,16 @@
               <div class="accordion-group">
                 <div class="accordion-heading">
                   <a class="accordion-toggle" data-toggle="collapse"
-                     data-parent="#accordion2" href="#collapseEight">
+                     data-parent="#accordion2" href="#contactFAQ">
                     How can I contribute or sponsor the project?
                   </a>
                 </div>
-                <div id="collapseEight" class="accordion-body collapse">
+                <div id="contactFAQ" class="accordion-body collapse">
                   <div class="accordion-inner">
                     Please donate via the button above.  You can also
-                    follow us on GitHub and work collaboratively with us there.
-                    We welcome your feedback. You can send thoughts, questions or
-		    suggestions to:<a href="mailto:info@cambix.org"> info <em>at</em> cambix.org</a>.<br>
+                    follow us on <a href="https://github.com/cambix/cambix/" target="_blank">GitHub</a>
+                    and work collaboratively with us there.  We welcome your feedback. You can send 
+                    thoughts, questions or suggestions to:<a href="mailto:info@cambix.org"> info <em>at</em> cambix.org</a>.<br>
 		    Our PGP/GPG Key is:<br><br><span class="pre"><span class="code">
 -----BEGIN PGP PUBLIC KEY BLOCK-----<br>
 Version: GnuPG v1.4.11 (GNU/Linux)<br>
@@ -685,7 +687,7 @@ gla2rtFdQbqSmcWJsOWHalGNrynoY40d31CXAxjd8N8FSiNiO2aViuw=<br>
     <!-- Countdown Script for thermometer -->
      
     <script type="text/javascript">
-        jQuery(document).ready(function($) {
+        $(document).ready(function($) {
             today = new Date();
             BigDay = new Date("Decmber 31, 2013");
             msPerDay = 24 * 60 * 60 * 1000 ;
@@ -693,6 +695,18 @@ gla2rtFdQbqSmcWJsOWHalGNrynoY40d31CXAxjd8N8FSiNiO2aViuw=<br>
             e_daysLeft = timeLeft / msPerDay;
             daysLeft = Math.floor(e_daysLeft);
             $("#countdown").text(daysLeft);
+        });
+    </script>
+
+    <!-- Auto expand contact information-->
+    <script type="text/javascript">
+        $(document).ready(function(event) {
+           $(".contact").click(function() {
+               //Do stuff when clicked
+            alert('expanding accordion body... ' + '#contactFAQ');
+            $("#contactFAQ").prop('accordion-body', 'expand');
+            event.preventDefault();
+           });
         });
     </script>
 

@@ -296,15 +296,17 @@
      
        ga('create', 'UA-43028302-1', 'cambix.org');
        ga('send', 'pageview');
+     </script>
      
-     </script>
+     <!-- Carousel script to initialize see: http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/twitter-bootstrap-101-the-carousel/ -->
 
-    <!-- Carousel script to initialize see: http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/twitter-bootstrap-101-the-carousel/ -->
-     <script>
-       $(document).ready(function(){
-         $('.carousel').carousel();
-       });
-     </script>
+     <script type='text/javascript'>
+        $(document).ready(function() {
+        $('.carousel').carousel({
+        interval: 2000}) 
+        });
+
+ </script>
 
   </body>
 </html>
