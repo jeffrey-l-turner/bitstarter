@@ -438,7 +438,6 @@
                 </div>
               </div>
 
-              <a name="contact"></a>    <!-- anchor for contact menu placing here since the menu scrolls below nav 5 lines lower --> 
 
               <div class="accordion-group">
                 <div class="accordion-heading">
@@ -447,6 +446,9 @@
                     Will this project be like a new Bitcoin or altcoin wallet?
                   </a>
                 </div>
+
+              <a name="contact"></a>    <!-- anchor for contact menu placing here since the menu scrolls below nav 5 lines lower --> 
+
                 <div id="collapseWallet" class="accordion-body collapse">
                   <div class="accordion-inner">
                     No. This project is designed to enable a new trading platform that
@@ -643,10 +645,11 @@ gla2rtFdQbqSmcWJsOWHalGNrynoY40d31CXAxjd8N8FSiNiO2aViuw=<br>
     <!-- Auto expand contact information-->
     <script type="text/javascript">
         $(document).ready(function(event) {
-           $(".contact").click(function() {
-               //Do stuff when clicked
-            alert('expanding accordion body... ' + '#contactFAQ');
-            $("#contactFAQ").prop('accordion-body', 'expand');
+           $('#contact').click(function() {
+              
+            alert('expanding accordion body... ' + 'accordioncontactFAQ');
+            // $("accordioncontactFAQ").prop('accordion-body', 'expand');
+            $("contactFAQ").collapse('expand');
             event.preventDefault();
            });
         });
