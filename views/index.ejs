@@ -93,7 +93,7 @@
               <li><a href="design">Design</a></li>
               <li><a href="/donations">Donations</a></li>
               <li><a href="about">About</a></li>
-              <li><a class="contact" href="#contact">Contact</a></li>
+              <li><a class="contactEXP" href="#contactEXP">Contact</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -406,10 +406,10 @@
                 </div>
                 <div id="collapseFive" class="accordion-body collapse">
                   <div class="accordion-inner">
-                    The $100,000 in contributions are expected to pay for approximately 2 full time equivalent
+                    The <i class="icon-btc">1000</i> in contributions are expected to pay for approximately 2 full time equivalent
                     engineering resources for 6 months along with ancillary testing and infrastructure resources
                     (two Mac or Chromebook computers as well as an Amazon Web Services account).  The donations 
-                    will be used to develop the software with a concentation on building the HTML5 user interface 
+                    will be used to develop the software with a concentration on building the HTML5 user interface 
                     components first. Specifically, we intend to focus on creating a virtualized infrastructure 
                     with a single online transaction instance back-end initally. We will then integrate the online 
                     transaction platform to tie the trading activity together with mutliple exchange instances. 
@@ -438,7 +438,6 @@
                 </div>
               </div>
 
-
               <div class="accordion-group">
                 <div class="accordion-heading">
                   <a class="accordion-toggle" data-toggle="collapse"
@@ -446,8 +445,6 @@
                     Will this project be like a new Bitcoin or altcoin wallet?
                   </a>
                 </div>
-
-              <a name="contact"></a>    <!-- anchor for contact menu placing here since the menu scrolls below nav 5 lines lower --> 
 
                 <div id="collapseWallet" class="accordion-body collapse">
                   <div class="accordion-inner">
@@ -460,6 +457,8 @@
                   </div>
                 </div>
               </div>
+
+              <a name="contactEXP"></a>    <!-- anchor for contact menu placing here since the menu scrolls below nav 5 lines lower --> 
 
               <div class="accordion-group">
                 <div class="accordion-heading">
@@ -474,11 +473,12 @@
                     Other altcoins and currencies could be supported as end-users might choose to
                     make them part of their asset to be bought or sold. Initially, our focus will
                     be to serve Bitcoin community. Bitcoin <a href="https://bitcointalk.org/?topic=41.0" target="_blank">
-                    BTC</a>  will act as both the medium of exchange and 
+                    (BTC)</a>  will act as both the medium of exchange and 
                     <a href="http://en.wikipedia.org/wiki/Price_signal" target="_blank">price signalling mechanism</a>.
                   </div>
                 </div>
               </div>
+
 
               <div class="accordion-group">
                 <div class="accordion-heading">
@@ -489,6 +489,7 @@
                 </div>
                 <div id="contactFAQ" class="accordion-body collapse">
                   <div class="accordion-inner">
+                   <h3 class="cgold">Contact</h3>
                     Please donate via the button above.  You can also
                     follow us on <a href="https://github.com/cambix/cambix/" target="_blank">GitHub</a>
                     and work collaboratively with us there.  We welcome your feedback. You can send 
@@ -594,23 +595,21 @@ gla2rtFdQbqSmcWJsOWHalGNrynoY40d31CXAxjd8N8FSiNiO2aViuw=<br>
                 </div>
               </div>
 
+
               <!-- Insert more FAQs here by changing #collapse<number> in two places. -->
 
             </div>
           </div>
-
       </div>
 
 
-      <!-- Not crucial, but we put this under a CC By-SA 3.0 license. -->
       <!-- http://creativecommons.org/licenses/ -->
       <div class="row-fluid footer">
         <div class="span12">
           <p>This work is licensed under
             the <a href="http://creativecommons.org/licenses/by-sa/3.0/">CC
               By-SA 3.0
-            </a>, without all the cruft that would otherwise be
-            put at the bottom of the page.</p>
+            </a> </p>
         </div>
       </div>
     </div>
@@ -644,12 +643,17 @@ gla2rtFdQbqSmcWJsOWHalGNrynoY40d31CXAxjd8N8FSiNiO2aViuw=<br>
 
     <!-- Auto expand contact information-->
     <script type="text/javascript">
-        $(document).ready(function(event) {
-           $('.contact').click(function() {
-            // alert('expanding accordion body... ' + 'accordioncontactFAQ');
-            $('#contactFAQ').collapse("expand");
-            // event.preventDefault();
-            window.location.hash="contactFAQ";
+        $(document).ready(function($) {
+           $('.contactEXP').click(function(event) {
+              // alert('expanding accordion body... ');
+              // $('#collapseOne').collapse("toggle");
+              $('#contactFAQ').collapse("expand");
+              $('.collapse').each(function (index) {
+                $(this).collapse("collapse");
+              });
+              // window.location.hash="contactFAQ";
+              jQuery('html,body').animate({scrollTop: jQuery('#contact').offset()}, 5000);
+              event.preventDefault();
            });
         });
     </script>

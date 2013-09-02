@@ -67,10 +67,10 @@ app.get('/features', function(request, response) {
     });
 
 // Contact
-app.get('contact', function(request, response) {
-    console.log("Contact link clicked");
-    response.send(fs.readFileSync('index.html').toString());
-    });
+// app.get('contact', function(request, response) {
+//    console.log("Contact link clicked");
+//    response.send(fs.readFileSync('index.html').toString());
+//    });
 
 // Design
 app.get('/design', function(request, response) {

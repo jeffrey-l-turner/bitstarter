@@ -75,6 +75,9 @@ sc {
 /* For Google font problems with spacing and setting shadow */
 .c1 {color: #F2A50F; letter-spacing: 18pt; text-shadow: 2px 3px 0px #1bb521; text-shadow: 4px 5px 0px #0b2f8a;}
 
+/* For Cambix gold color*/
+.cgold {color: #F2A50F;}
+
 /* For customizing button used for Sponsorship (want more rounded look)  */
 .btn_rounded {
    -webkit-border-radius: 35px;
