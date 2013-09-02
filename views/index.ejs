@@ -645,12 +645,11 @@ gla2rtFdQbqSmcWJsOWHalGNrynoY40d31CXAxjd8N8FSiNiO2aViuw=<br>
     <!-- Auto expand contact information-->
     <script type="text/javascript">
         $(document).ready(function(event) {
-           $('#contact').click(function() {
-              
-            alert('expanding accordion body... ' + 'accordioncontactFAQ');
-            // $("accordioncontactFAQ").prop('accordion-body', 'expand');
-            $("contactFAQ").collapse('expand');
-            event.preventDefault();
+           $('.contact').click(function() {
+            // alert('expanding accordion body... ' + 'accordioncontactFAQ');
+            $('#contactFAQ').collapse("expand");
+            // event.preventDefault();
+            window.location.hash="contactFAQ";
            });
         });
     </script>
