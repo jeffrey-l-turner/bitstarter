@@ -93,7 +93,7 @@
               <li><a href="design">Design</a></li>
               <li><a href="/donations">Donations</a></li>
               <li><a href="about">About</a></li>
-              <li><a class="contactEXP" href="#contactEXP">Contact</a></li>
+              <li><a id="contactEXP" href="#contact">Contact</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -127,7 +127,7 @@
         </div>
 
         <!-- We define a new 'actions' div to contain statistics, order, and share buttons.-->
-        <div class="span5 actions">
+        <div class="span5 offset1 actions">
          <div class="row-fluid">
           <div class="span8 offset2">
 
@@ -212,10 +212,10 @@
       <!-- http://twitter.github.io/bootstrap/base-css.html#images -->
       <!-- http://placehold.it -->
       <div class="row-fluid section1">
-        <div class="span4 offset3 asset">
-          <img class="img-polaroid" alt="Placeholder" style="width: 440px; height: 300px; overflow: inherit" src="/img/CMBX_prop_arch.png">
+        <div class="span3 offset3 asset">
+          <img class="img-polaroid" alt="Placeholder" src="/img/CMBX_prop_arch.png">
         </div>
-        <div class="span3 copy">
+        <div class="span3 offset1 copy">
           <p>
             Bitcoin is at a crossroads. Just a few major currency exchanges or <sc>
             <a href="http://en.wikipedia.org/wiki/Cambio" target="_blank">
@@ -238,7 +238,7 @@
       </div> <!-- end row-fluid section1 -->
 
       <div class="row-fluid section2">
-        <div class="span3 offset3 copy copy-right">
+        <div class="span3 offset3 bulletlist">
           <p>
             <h3> <em>Features:</em>
             <blockquote>Open Source <br>
@@ -250,7 +250,7 @@
             </blockquote>
           </p>
         </div>
-        <div class="span4 offset1 design">
+        <div class="span3 offset1 design">
           <img class="img-polaroid" alt="Placeholder" style="width: 400px; height: 300px; overflow: hidden" src="/img/CMBX_design.png">
         </div>
       </div>
@@ -458,7 +458,7 @@
                 </div>
               </div>
 
-              <a name="contactEXP"></a>    <!-- anchor for contact menu placing here since the menu scrolls below nav 5 lines lower --> 
+              <a name="contact"></a> <!-- anchor for contact menu placing here since the menu scrolls below nav 5 lines lower --> 
 
               <div class="accordion-group">
                 <div class="accordion-heading">
@@ -627,8 +627,7 @@ gla2rtFdQbqSmcWJsOWHalGNrynoY40d31CXAxjd8N8FSiNiO2aViuw=<br>
      
      </script>
 
-    <!-- Countdown Script for thermometer -->
-     
+   <!-- Countdown Script for thermometer --> 
     <script type="text/javascript">
         $(document).ready(function($) {
             today = new Date();
@@ -641,21 +640,14 @@ gla2rtFdQbqSmcWJsOWHalGNrynoY40d31CXAxjd8N8FSiNiO2aViuw=<br>
         });
     </script>
 
-    <!-- Auto expand contact information-->
+   <!-- Auto expand contact information-->
     <script type="text/javascript">
         $(document).ready(function($) {
-           $('.contactEXP').click(function(event) {
-              // alert('expanding accordion body... ');
-              // $('#collapseOne').collapse("toggle");
-              $('#contactFAQ').collapse("expand");
-              $('.collapse').each(function (index) {
-                $(this).collapse("collapse");
-              });
-              // window.location.hash="contactFAQ";
-              jQuery('html,body').animate({scrollTop: jQuery('#contact').offset()}, 5000);
-              event.preventDefault();
-           });
-        });
+            $('#contactEXP').click(function(event) {
+                $('#contactFAQ').collapse("show");
+                window.location.hash="contact";
+                });
+            });
     </script>
 
   </body>
