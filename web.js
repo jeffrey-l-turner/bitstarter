@@ -26,11 +26,11 @@ app.use(function(req, res, next) {
 });
 
 // Remove trailing # to end of URL
-app.use(function(req, res, next) {
-  console.log("Stripping url: " + req.url);
-  req.url = req.url.replace(/#+$/, ""); 
-  next();
-});
+//app.use(function(req, res, next) {
+//  console.log("Stripping url: " + req.url);
+//  req.url = req.url.replace(/#+$/, ""); 
+//  next();
+//});
 
 // simple logger
 app.use(function(req, res, next){
@@ -42,7 +42,7 @@ app.use(function(req, res, next){
 app.use(express.favicon(__dirname + ASSET_DIR + '/favicon.ico', {maxAge: 86400000}));
 app.use(express.static(__dirname + ASSET_DIR));
 
-// Cache index.html to speed up re-processing of ("single page") app
+//  Set port from .env if not on Heroku
 app.set('port', process.env.PORT || 8080);
 
 // Render homepage (note trailing slash): example.com/
@@ -67,10 +67,20 @@ app.get('/features', function(request, response) {
     });
 
 // Contact
-// app.get('contact', function(request, response) {
-//    console.log("Contact link clicked");
-//    response.send(fs.readFileSync('index.html').toString());
-//    });
+app.get('/contact', function(request, response) {
+   console.log("/contact link clicked");
+   global.db.Order.findAll().success(function(orders) {
+    var orders_json = [];
+    orders.forEach(function(order) {
+      orders_json.push({id: order.coinbase_id, amount: order.amount, time: order.time});
+    });
+    // Uses views/orders.ejs
+    response.render("index", {orders: orders_json});
+  }).error(function(err) {
+    console.log(err);
+    response.send("error retrieving orders");
+  });
+});
 
 // Design
 app.get('/design', function(request, response) {
