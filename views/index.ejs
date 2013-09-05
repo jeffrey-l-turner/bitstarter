@@ -93,8 +93,8 @@
               <li><a href="features">Features</a></li>
               <li><a href="design">Design</a></li>
               <li><a href="/donations">Donations</a></li>
-              <li><a href="about">About</a></li>
-              <li><a id="contactEXP" href="#contact">Contact</a></li>
+              <li><a id="aboutEXP" href="#collapseLBOTC">About</a></li>
+              <li><a id="contactEXP" href="#contactFAQ">Contact</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -123,12 +123,12 @@
       </div>
 
       <div class="row-fluid pitch">
-        <div class="offset1 span4 video">
+        <div class="span5 video">
           <img class="img-polaroid" alt="Placeholder" src="/img/CMBX_vid_placeholder.png">
         </div>
 
-        <!-- We define a new 'actions' div to contain statistics, order, and share buttons.-->
-        <div class="span4 offset3 actions">
+        <!-- We define a new 'actions' div to contain statistics, donate, and share buttons.-->
+        <div class="span5 offset2 actions">
          <div class="row-fluid">
           <div class="span8 offset2">
 
@@ -213,10 +213,10 @@
       <!-- http://twitter.github.io/bootstrap/base-css.html#images -->
       <!-- http://placehold.it -->
       <div class="row-fluid section1">
-        <div class="span3 offset3 asset">
+        <div class="span3 offset2 asset">
           <img class="img-polaroid" alt="Placeholder" src="/img/CMBX_prop_arch.png">
         </div>
-        <div class="span3 offset1 copy">
+        <div class="span3 offset2 copy">
           <p>
             Bitcoin is at a crossroads. Just a few major currency exchanges or <sc>
             <a href="http://en.wikipedia.org/wiki/Cambio" target="_blank">
@@ -337,6 +337,7 @@
                 </div>
                 <div id="collapseLBOTC" class="accordion-body collapse">
                   <div class="accordion-inner">
+                   <h3 class="cgold">About the Platform</h3>
                     <a href="http://Localbitcoins.com" target="_blank">LocalBitcoins</a>
                     is primarily focused on enabling individuals to physically exchange Bitcoins for other physical assets (e.g. cash)
                     and is centralized on a single website. It is not focused on providing an online trading mechanism or platform.<br>
@@ -398,6 +399,7 @@
                 </div>
               </div>
 
+
               <div class="accordion-group">
                 <div class="accordion-heading">
                   <a class="accordion-toggle" data-toggle="collapse"
@@ -458,8 +460,6 @@
                   </div>
                 </div>
               </div>
-
-              <a name="contact"></a> <!-- anchor for contact menu placing here since the menu scrolls below nav 5 lines lower --> 
 
               <div class="accordion-group">
                 <div class="accordion-heading">
@@ -641,16 +641,31 @@ gla2rtFdQbqSmcWJsOWHalGNrynoY40d31CXAxjd8N8FSiNiO2aViuw=<br>
         });
     </script>
 
-   <!-- Auto expand contact information-->
+   <!-- Auto expand contact information -->
     <script type="text/javascript">
         $(document).ready(function($) {
             $('#contactEXP').click(function(event) {
-//                $('.collapse').each(function (index) {
-//                    $(this).collapse("collapse");
-//                });
                 $('#contactFAQ').collapse("show");
+                return true;
+            });
+        });
+    </script> 
 
-                window.location.hash="contact";
+   <!-- Auto expand about information -->
+    <script type="text/javascript">
+        $(document).ready(function($) {
+            $('#aboutEXP').click(function(event) {
+                $('#collapseLBOTC').collapse("show");
+                return true;
+            });
+        });
+    </script> 
+
+   <!-- Scroll to open FAQ -->
+    <script type="text/javascript">
+        $(document).ready(function($) {
+            $('.accordion-body').on('show',function(event){
+                $('html,body').animate({scrollTop: $(this).offset().top-100},'slow');
             });
         });
     </script>
