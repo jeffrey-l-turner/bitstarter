@@ -100,7 +100,7 @@
               <li><a href="features">Features</a></li>
               <li><a href="design">Design</a></li>
               <li><a href="/donations">Donations</a></li>
-              <li><a id="aboutEXP" href="#collapseLBOTC">About</a></li>
+              <li><a id="aboutEXP" href="#collapseAbout">About</a></li>
               <li><a id="contactEXP" href="#contactFAQ">Contact</a></li>
             </ul>
           </div><!--/.nav-collapse -->
@@ -339,13 +339,34 @@
               <div class="accordion-group">
                 <div class="accordion-heading">
                   <a class="accordion-toggle" data-toggle="collapse"
+                     data-parent="#accordion2" href="#collapseAbout">
+                    How will this platform be developed and architected? What are the implementation requirements?
+                  </a>
+                </div>
+                <div id="collapseAbout" class="accordion-body collapse">
+                  <div class="accordion-inner">
+                   <h3 class="cgold">About the Platform</h3>
+                    The implementation requires a front-end, "client," and back-end, "server." The back-end must maintain an up-to-date 
+                    <a href="https://en.bitcoin.it/wiki/Block_chain" target="_blank">block chain</a> as well as constantly communicate with other 
+                    trading systems to minimize Bitcoin arbitrage risk. (Support for other altcoin virtual currencies may require 
+                    synchronization of their block chains or equivalent, as well.)  In addition, the back-end system must be capable of 
+                    communicating with multiple clients simultaneously while executing trades on a 24x7x365 basis. Currently, we are planning on using a
+                    <a href="http://mongodb.org/" target="_blank">MongoDB</a>/<a href="http://www.meteor.com/" target="_blank">Meteor</a> 
+                    based system for the front-end and a reference implementation based on Ubuntu for the back-end.  
+                    (A detailed discussion of these requirements can be found <a href="https://bitcointalk.org/index.php?topic=212490.0;all" target="_blank">here</a>.) 
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <a class="accordion-toggle" data-toggle="collapse"
                      data-parent="#accordion2" href="#collapseLBOTC">
                     How will this platform compare with LocalBitcoins or Bitcoin-OTC?
                   </a>
                 </div>
                 <div id="collapseLBOTC" class="accordion-body collapse">
                   <div class="accordion-inner">
-                   <h3 class="cgold">About the Platform</h3>
                     <a href="http://Localbitcoins.com" target="_blank">LocalBitcoins</a>
                     is primarily focused on enabling individuals to physically exchange Bitcoins for other physical assets (e.g. cash)
                     and is centralized on a single website. It is not focused on providing an online trading mechanism or platform.<br>
@@ -354,7 +375,6 @@
                     machine-to-machine communications mechanism.  In addition, our system is designed to support
                     offline usage while keeping the virtualized exchange online performing automated trading. In essence,
                     the market needs a platform which supports discoverability, privacy, integrity and operates on a 24x7 basis.
-                    (A detailed discussion of these requirements can be found <a href="https://bitcointalk.org/index.php?topic=212490.0;all" target="_blank">here</a>.) 
                   </div>
                 </div>
               </div>
@@ -652,6 +672,7 @@ gla2rtFdQbqSmcWJsOWHalGNrynoY40d31CXAxjd8N8FSiNiO2aViuw=<br>
         $(document).ready(function($) {
             $('#contactEXP').click(function(event) {
                 $('#contactFAQ').collapse("show");
+                event.preventDefault();
                 return true;
             });
         });
@@ -659,7 +680,8 @@ gla2rtFdQbqSmcWJsOWHalGNrynoY40d31CXAxjd8N8FSiNiO2aViuw=<br>
    <!-- Auto expand about information -->
         $(document).ready(function($) {
             $('#aboutEXP').click(function(event) {
-                $('#collapseLBOTC').collapse("show");
+                $('#collapseAbout').collapse("show");
+                event.preventDefault();
                 return true;
             });
         });
@@ -667,7 +689,7 @@ gla2rtFdQbqSmcWJsOWHalGNrynoY40d31CXAxjd8N8FSiNiO2aViuw=<br>
    <!-- Scroll to open FAQ -->
         $(document).ready(function($) {
             $('.accordion-body').on('show',function(event){
-                $('html,body').animate({scrollTop: $(this).offset().top-100},'slow');
+                $('html,body').animate({scrollTop: $(this).offset().top-120},'slow');
             });
         });
 
