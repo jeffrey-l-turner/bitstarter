@@ -7,8 +7,15 @@
     <link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap-combined.no-icons.min.css">
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css">
     <link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fsocial-buttons.css">    
+
+    <!-- Select appropriate jQuery where available -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="assets/js/jquery-1.7.2.min.js"><\/script>')</script>
+
+    <!-- Add fancyBox -->
+    <link rel="stylesheet" href="/css/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+    <script type="text/javascript" src="/css/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
     <script src="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap.js"></script>
     <link href="http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,300,400,600,700,800" 
@@ -213,12 +220,11 @@
       <!-- http://twitter.github.io/bootstrap/base-css.html#images -->
       <!-- http://placehold.it -->
       <div class="row-fluid section1">
-        <div class="span3 offset2 asset">
-          <img class="img-polaroid" alt="Placeholder" src="/img/CMBX_prop_arch.png">
+        <div class="span3 offset2 architecture">
+          <img class="img-polaroid" id="arch" alt="Placeholder" style="width: 420px; height: 315px; overflow: inherit" src="/img/CMBX_prop_arch.png">
         </div>
         <div class="span3 offset2 copy">
-          <p>
-            Bitcoin is at a crossroads. Just a few major currency exchanges or <sc>
+          <p> Bitcoin is at a crossroads. Just a few major currency exchanges or <sc>
             <a href="http://en.wikipedia.org/wiki/Cambio" target="_blank">
             "cambios" </a></sc> serve the majority of the Bitcoin economy.
             With such a significant majority of Bitcoin transactions 
@@ -252,7 +258,7 @@
           </p>
         </div>
         <div class="span3 offset1 design">
-          <img class="img-polaroid" alt="Placeholder" style="width: 400px; height: 300px; overflow: hidden" src="/img/CMBX_design.png">
+          <a href="design"><img class="img-polaroid" alt="Placeholder" style="width: 400px; height: 300px; overflow: hidden" src="/img/CMBX_design.png"></a>
         </div>
       </div>
 
@@ -639,35 +645,49 @@ gla2rtFdQbqSmcWJsOWHalGNrynoY40d31CXAxjd8N8FSiNiO2aViuw=<br>
             daysLeft = Math.floor(e_daysLeft);
             $("#countdown").text(daysLeft);
         });
-    </script>
 
    <!-- Auto expand contact information -->
-    <script type="text/javascript">
         $(document).ready(function($) {
             $('#contactEXP').click(function(event) {
                 $('#contactFAQ').collapse("show");
                 return true;
             });
         });
-    </script> 
 
    <!-- Auto expand about information -->
-    <script type="text/javascript">
         $(document).ready(function($) {
             $('#aboutEXP').click(function(event) {
                 $('#collapseLBOTC').collapse("show");
                 return true;
             });
         });
-    </script> 
 
    <!-- Scroll to open FAQ -->
-    <script type="text/javascript">
         $(document).ready(function($) {
             $('.accordion-body').on('show',function(event){
                 $('html,body').animate({scrollTop: $(this).offset().top-100},'slow');
             });
         });
+
+   <!-- Expand proposed arch on hover -->
+        $(document).ready(function($) {
+            var current_h = $('#arch').height();
+	    var current_w = $('#arch').width();
+            $('#arch').hover(
+		function() {
+                    // alert("curent h = " + current_h + "; w = " + current_w);
+		    $(this).stop(true, false).animate({
+		        width: (current_w * 1.35),
+		        height: (current_h * 1.35)
+		    }, 500);
+		}, function() {
+		    $(this).stop(true, false).animate({
+		        width: current_w + 'px',
+		        height: current_h + 'px'
+		    }, 500);
+	    });
+        });
+
     </script>
 
   </body>
