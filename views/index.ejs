@@ -221,7 +221,9 @@
       <!-- http://placehold.it -->
       <div class="row-fluid section1">
         <div class="span3 offset2 architecture">
-          <img class="img-polaroid" id="arch" alt="Placeholder" style="width: 420px; height: 315px; overflow: inherit" src="/img/CMBX_prop_arch.png">
+          <a class="fancybox" href="/img/CMBX_prop_arch_large.png">
+            <img class="img-polaroid" id="arch" alt="Placeholder" style="width: 420px; height: 315px; overflow: inherit" src="/img/CMBX_prop_arch.png">
+          </a>
         </div>
         <div class="span3 offset2 copy">
           <p> Bitcoin is at a crossroads. Just a few major currency exchanges or <sc>
@@ -669,23 +671,13 @@ gla2rtFdQbqSmcWJsOWHalGNrynoY40d31CXAxjd8N8FSiNiO2aViuw=<br>
             });
         });
 
-   <!-- Expand proposed arch on hover -->
-        $(document).ready(function($) {
-            var current_h = $('#arch').height();
-	    var current_w = $('#arch').width();
-            $('#arch').hover(
-		function() {
-                    // alert("curent h = " + current_h + "; w = " + current_w);
-		    $(this).stop(true, false).animate({
-		        width: (current_w * 1.35),
-		        height: (current_h * 1.35)
-		    }, 500);
-		}, function() {
-		    $(this).stop(true, false).animate({
-		        width: current_w + 'px',
-		        height: current_h + 'px'
-		    }, 500);
-	    });
+   <!-- Fancybox on images -->
+        $(document).ready(function() {
+            $('.fancybox').fancybox({
+                padding : 0,
+                openEffect  : 'elastic'
+            });
+            $("a[href$='.jpg'],a[href$='.jpeg'],a[href$='.png'],a[href$='.gif']").attr('rel', 'gallery').fancybox();
         });
 
     </script>
