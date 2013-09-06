@@ -37,8 +37,13 @@
         background-color:#1F1F7A;
         padding: 3% 0%;
       }
-      .video, .thermometer, .order, .social, .statistics {
-        text-align: center;
+      .video, .thermometer, .order, .statistics {
+        display: block; 
+        margin: auto;
+        text-align: center; 
+      }
+      .social {
+        text-align: right;
       }
       .statistics h3, .statistics p {
         color: white;

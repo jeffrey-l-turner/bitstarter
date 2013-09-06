@@ -199,7 +199,8 @@
              <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
               <a class="addthis_button_twitter"></a>
               <!-- Placing GitHub button here for formatting purposes (margin & padding) -->
-              <a href="https://github.com/cambix/cambix/" target="_blank" <button class="btn btn-github btn-small"><i class="icon-github"></i> GitHub Src</button> </a> 
+              <a href="https://github.com/cambix/cambix/" target="_blank" <button class="btn btn-github btn-small"><i class="icon-large icon-github-alt"></i> GitHub<br>
+                    <i class="icon-large icon-github"></i>  Code</button> </a> 
               <a class="addthis_button_facebook"></a>
               <!-- <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>  -->
              </div>
@@ -656,8 +657,37 @@ gla2rtFdQbqSmcWJsOWHalGNrynoY40d31CXAxjd8N8FSiNiO2aViuw=<br>
      
      </script>
 
-   <!-- Countdown Script for thermometer --> 
+    <!-- Scroll to top div -->
+      <a href="#" class="scroll-top"><i class="icon-chevron-up"></i></a>
+        <div class="scroll-wrapper">
+                <div id="scrollupicon">
+                </div>
+        </div>
+
     <script type="text/javascript">
+
+   <!-- Floating go to top icon for greater than 700 lines -->s
+
+        $(document).ready(function() {
+             $(window).scroll(function () {
+                 if ($(this).scrollTop() > 700) {
+                     $('.scroll-top, .scroll-wrapper').removeClass('off').addClass('on');
+                 }
+                 else {
+                     $('.scroll-top, .scroll-wrapper').removeClass('on').addClass('off');
+                 }
+             });
+     
+             $('.scroll-top').click(function () {
+                 $("html, body").animate({
+                     scrollTop: 0
+                 }, 800);
+                 return false;
+             });
+        });
+
+
+   <!-- Countdown Script for thermometer --> 
         $(document).ready(function($) {
             today = new Date();
             BigDay = new Date("Decmber 31, 2013");
@@ -689,7 +719,7 @@ gla2rtFdQbqSmcWJsOWHalGNrynoY40d31CXAxjd8N8FSiNiO2aViuw=<br>
    <!-- Scroll to open FAQ -->
         $(document).ready(function($) {
             $('.accordion-body').on('show',function(event){
-                $('html,body').animate({scrollTop: $(this).offset().top-120},'slow');
+                $('html,body').animate({scrollTop: $(this).offset().top-130},'slow');
             });
         });
 
@@ -701,6 +731,7 @@ gla2rtFdQbqSmcWJsOWHalGNrynoY40d31CXAxjd8N8FSiNiO2aViuw=<br>
             });
             $("a[href$='.jpg'],a[href$='.jpeg'],a[href$='.png'],a[href$='.gif']").attr('rel', 'gallery').fancybox();
         });
+   
 
     </script>
 
