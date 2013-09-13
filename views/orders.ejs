@@ -128,7 +128,7 @@
           <% for(var i=0; i<orders.length; i++) {%>
              <tr>
                <td><%= orders[i].id %></td>
-               <td><%= orders[i].amount %></td>
+               <td><i class="icon-btc"></i><%= ' ' + orders[i].amount %></td>
                <td><%= orders[i].time %></td>
              </tr>
              <% } %>

@@ -633,6 +633,12 @@ gla2rtFdQbqSmcWJsOWHalGNrynoY40d31CXAxjd8N8FSiNiO2aViuw=<br>
       </div>
 
 
+
+      <!-- Scroll to top div -->
+        <div class="scroll-wrapper">
+             <a data-original-title="scroll to top" href="#" class="scroll-top"><i class="icon-chevron-up"></i></a>
+        </div>
+
       <!-- http://creativecommons.org/licenses/ -->
       <div class="row-fluid footer">
         <div class="span12">
@@ -657,32 +663,26 @@ gla2rtFdQbqSmcWJsOWHalGNrynoY40d31CXAxjd8N8FSiNiO2aViuw=<br>
      
      </script>
 
-    <!-- Scroll to top div -->
-      <a href="#" class="scroll-top"><i class="icon-chevron-up"></i></a>
-        <div class="scroll-wrapper">
-                <div id="scrollupicon">
-                </div>
-        </div>
-
     <script type="text/javascript">
 
    <!-- Floating go to top icon for greater than 700 lines -->s
 
         $(document).ready(function() {
+             $('.scroll-wrapper').tooltip();
              $(window).scroll(function () {
                  if ($(this).scrollTop() > 700) {
-                     $('.scroll-top, .scroll-wrapper').removeClass('off').addClass('on');
+                    $('.scroll-top, .scroll-wrapper').removeClass('off').addClass('on');
                  }
                  else {
                      $('.scroll-top, .scroll-wrapper').removeClass('on').addClass('off');
                  }
              });
      
-             $('.scroll-top').click(function () {
+             $('.scroll-top').click(function(event) {
                  $("html, body").animate({
-                     scrollTop: 0
-                 }, 800);
-                 return false;
+                    scrollTop: 0
+                 }, 999);
+                 return true;
              });
         });
 
