@@ -90,6 +90,25 @@
         margin: auto;
       } 
 
+      #back_top  {
+     /*   background:url('../images/back_top.png') no-repeat center center; */
+        background-color:rgba(0, 0, 0, 0.5);
+        width:60px;
+        height:60px;
+        border-radius:7px;
+        position:fixed;
+        bottom:48px;
+        right:48px;
+        z-index:100;
+        transition: all 300ms ease-out; /*safari and chrome */
+        -webkit-transition: all 300ms ease-out; /*safari and chrome */
+        cursor:pointer;
+      }
+
+      #back_top:hover     {
+        background-color:rgba(0, 0, 0, 0.7);
+      }
+
 
 /* For small capping Cambix and creating outline color */
 sc {
